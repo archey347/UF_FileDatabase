@@ -1,0 +1,21 @@
+{
+    "name": "archey347/UF_FileDatabase",
+    "type": "userfrosting-sprinkle",
+    "description": "",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Archey Barrell"
+        }
+    ],
+    "extra": {
+        "installer-name": "FileDB"
+    },
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\FileDB\\": "src/"
+        }
+    }
+}
