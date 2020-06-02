@@ -16,22 +16,23 @@
   *
   * @author Archey Barrell
   */
- class FilesTable extends Migration
+ class FileablesTable extends Migration
  {
      public function up() 
      {
-         if(!$this->schema->hasTable('files')) {
-             $this->schema->create('files', function (Blueprint $table) {
+         if(!$this->schema->hasTable('fileables')) {
+             $this->schema->create('fileables', function (Blueprint $table) {
                  $table->increments('id');
-                 
-                 $table->string("name");
 
-                 $table->timestamps();
+                 $table->unsignedInteger("file_id");
+                 $table->unsignedInteger("fileable_id");
+                 $table->string("fileable_type");
+
              });
          }
      }
 
      public function down() {
-         $this->schema->drop('files');
+         $this->schema->drop('fileables');
      }
  }
