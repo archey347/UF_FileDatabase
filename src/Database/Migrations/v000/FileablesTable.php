@@ -28,6 +28,7 @@
                  $table->unsignedInteger("fileable_id");
                  $table->string("fileable_type");
 
+                 $table->softDeletes();
              });
          }
      }
