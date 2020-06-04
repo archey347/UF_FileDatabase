@@ -73,6 +73,9 @@ class File extends Model
         $path = $fileDB->getPath($this->id);
 
         $disk->put($path, $fileContents);
+
+        // Update timestamps
+        $this->touch();
     }
 
     /**
