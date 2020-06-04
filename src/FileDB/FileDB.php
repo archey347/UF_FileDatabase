@@ -43,7 +43,7 @@ class FileDB
         $disk = $this->disk;
 
         $path = $this->getPath($file->id);
-
+        
         // Make sure an existing file doesn't exist
         if($disk->exists($path)) {
             throw new \Exception("A file already exists with that ID, please clean the storage area");
@@ -59,5 +59,12 @@ class FileDB
         $disk = $this->disk;
 
         return $disk->get($this->getPath($file->id));
+    }
+
+    public function delete(File $file)
+    {
+        $disk = $this->disk;
+
+        return $disk->delete($this->getPath($file->id));
     }
 }

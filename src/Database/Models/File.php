@@ -51,6 +51,18 @@ class File extends Model
     {
         $fileDB = static::$ci->fileDB;
 
-        return $fileDB->get($this->id);
+        return $fileDB->get($this);
+    }
+
+    /**
+     * Delete
+     */
+    public function forceDelete() 
+    {
+        $fileDB = static::$ci->fileDB;
+
+        $fileDB->delete($this);
+
+        parent::forceDelete();
     }
 }
