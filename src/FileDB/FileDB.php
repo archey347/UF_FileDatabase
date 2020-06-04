@@ -17,7 +17,7 @@ class FileDB
         $this->disk = $disk;
     }
 
-    protected function getPath($id)
+    public function getPath($id)
     {
         $config = $this->config;
 
@@ -34,37 +34,8 @@ class FileDB
         return $path . $id;
     }
 
-    public function put($filename, $fileContents)
+    public function getDisk()
     {
-        $file = new File();
-        $file->name = $filename;
-        $file->save();
-
-        $disk = $this->disk;
-
-        $path = $this->getPath($file->id);
-        
-        // Make sure an existing file doesn't exist
-        if($disk->exists($path)) {
-            throw new \Exception("A file already exists with that ID, please clean the storage area");
-        }
-
-        $disk->put($path, $fileContents);
-
-        return $file;
-    }
-
-    public function get(File $file)
-    {
-        $disk = $this->disk;
-
-        return $disk->get($this->getPath($file->id));
-    }
-
-    public function delete(File $file)
-    {
-        $disk = $this->disk;
-
-        return $disk->delete($this->getPath($file->id));
+        return $this->disk;
     }
 }

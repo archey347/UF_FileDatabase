@@ -44,6 +44,8 @@ class File extends Model
      */
     public $timestamps = true;
 
+    
+
     /**
      * Get the file from storage
      */
@@ -51,7 +53,26 @@ class File extends Model
     {
         $fileDB = static::$ci->fileDB;
 
-        return $fileDB->get($this);
+        $disk = $fileDB->getDisk();
+
+        $path = $fileDB->getPath($this->id);
+
+        return $disk->get($path);
+    }
+
+    public function put($fileContents)
+    {
+        if(!$this->exists) {
+            throw new \Exception("The file must be saved to the database first");
+        }
+
+        $fileDB = static::$ci->fileDB;
+
+        $disk = $fileDB->getDisk();
+
+        $path = $fileDB->getPath($this->id);
+
+        $disk->put($path, $fileContents);
     }
 
     /**
@@ -61,7 +82,11 @@ class File extends Model
     {
         $fileDB = static::$ci->fileDB;
 
-        $fileDB->delete($this);
+        $disk = $fileDB->getDisk();
+
+        $path = $fileDB->getPath($this->id);
+
+        $disk->delete($path);
 
         parent::forceDelete();
     }
