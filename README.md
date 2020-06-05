@@ -28,6 +28,25 @@ $file->delete()
 // Force Deleting (this will remove it from the filesystem)
 $file->forceDelete();
 ```
+## Installation
+
+Edit UserFrosting app/sprinkles.json file and add the following to the require list : `"archey347/uf_filedatabase": "^0.0.1"`. Also add `FileDB` to the base list. For example:
+
+{
+    "require": {
+        "archey347/uf_filedatabase": "^0.0.1"
+    },
+    "base": [
+        "core",
+        "account",
+        "admin",
+        "FileDB"
+    ]
+}
+
+Run composer update then php bakery bake to install the sprinkle.
+
+
 ## Configuration
 ```
 return [
