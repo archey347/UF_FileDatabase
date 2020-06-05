@@ -5,4 +5,4 @@ return [
         "disk" => "local",
         "path" => "db"
     ]
-    ];
+];
